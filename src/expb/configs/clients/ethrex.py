@@ -46,8 +46,15 @@ class EthrexConfig(ClientConfig):
         if network == Network.MAINNET:
             command.extend(
                 [
-                    "--chain=mainnet",
-                    "--full",
+                    "--network=mainnet",
+                    "--syncmode=full",
+                ]
+            )
+        elif network == Network.HOODI:
+            command.extend(
+                [
+                    "--network=hoodi",
+                    "--syncmode=full",
                 ]
             )
         return self.default_command + command + extra_flags

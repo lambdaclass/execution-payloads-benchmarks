@@ -72,3 +72,12 @@ class Network(Enum):
             Fork.PRAGUE: 1746612311,
         },
     )
+    HOODI = NetworkConfig(
+        name="hoodi",
+        forks_timestamps={
+            Fork.PARIS: 0,
+            Fork.SHANGHAI: 0,
+            Fork.CANCUN: 0,
+            Fork.PRAGUE: 1742999832,
+        },
+    )
