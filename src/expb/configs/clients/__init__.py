@@ -12,6 +12,7 @@ from expb.configs.clients.client_config import (
 )
 from expb.configs.clients.nethermind import NethermindConfig
 from expb.configs.clients.geth import GethConfig
+from expb.configs.clients.ethrex import EthrexConfig
 from expb.configs.clients.reth import RethConfig
 from expb.configs.clients.erigon import ErigonConfig
 from expb.configs.clients.besu import BesuConfig
@@ -20,6 +21,7 @@ from expb.configs.clients.besu import BesuConfig
 class Client(Enum):
     NETHERMIND = NethermindConfig()
     BESU = BesuConfig()
+    ETHREX = EthrexConfig()
     RETH = RethConfig()
     GETH = GethConfig()
     ERIGON = ErigonConfig()
