@@ -14,26 +14,26 @@ class EthrexConfig(ClientConfig):
     def __init__(self):
         super().__init__(
             name="ethrex",
-            default_image="ethpandaops/ethrex:performance", # TODO: use our own image
+            default_image="ghcr.io/lambdaclass/ethrex:performance",
             default_command=[
-                "node",
                 f"--datadir={CLIENTS_DATA_DIR}",
-                f"--log.file.directory={CLIENTS_DATA_DIR}/logs",
-                f"--port={CLIENT_P2P_PORT}",
-                "--http",
+                f"--p2p.port={CLIENT_P2P_PORT}",
+                f"--discovery.port={CLIENT_P2P_PORT}",
                 "--http.addr=0.0.0.0",
                 f"--http.port={CLIENT_RPC_PORT}",
+                "--ws.enabled",
+                "--ws.addr=0.0.0.0",
+                f"--ws.port={CLIENT_RPC_PORT}",
+                f"--authrpc.jwtsecret={CLIENTS_JWT_SECRET_FILE}",
                 "--authrpc.addr=0.0.0.0",
                 f"--authrpc.port={CLIENT_ENGINE_PORT}",
-                f"--authrpc.jwtsecret={CLIENTS_JWT_SECRET_FILE}",
-                f"--metrics=0.0.0.0:{CLIENT_METRICS_PORT}",
-                "--http.api=trace,rpc,eth,net,debug,web3,admin",
+                "--metrics",
+                "--metrics.addr=0.0.0.0",
+                f"--metrics.port={CLIENT_METRICS_PORT}",
                 # Disable peering
-                "--disable-discovery",
-                "--max-inbound-peers=0",
-                "--max-outbound-peers=0",
+                "--p2p.disabled",
             ],
-            prometheus_metrics_path="/debug/metrics/prometheus",
+            prometheus_metrics_path="/metrics",
         )
 
     def get_command(
